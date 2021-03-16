@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Counter from './components/counter';
+import Counters from './components/counters';
 import Movies from './components/movies';
 
 
@@ -8,7 +8,7 @@ class App extends Component {
         return ( 
             <main className="container">
                 <Movies/>
-                <Counter/>
+                <Counters/>
             </main>
          );
     }
