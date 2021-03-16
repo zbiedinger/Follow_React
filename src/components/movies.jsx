@@ -17,7 +17,7 @@ class Movies extends Component {
     return (
       <React.Fragment>
         <p>Showing {count} movies in your database.</p>
-        <table className="table">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th>Title</th>

@@ -7,8 +7,8 @@ class App extends Component {
     render() { 
         return ( 
             <main className="container">
-                <Movies/>
                 <Counters/>
+                <Movies/>
             </main>
          );
     }
