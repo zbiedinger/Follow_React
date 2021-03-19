@@ -16,12 +16,10 @@ class App extends Component {
 
       constructor(props){
           super(props);
-          console.log('App-Constructor');
           this.sate = this.props.something;
       }
 
       componentDidMount(prevProps, prevState){
-          console.log('App-Mounted');
           //if (prevProps.counters.value !== this.props.counters.value){
               // Alax call to will not happem if things are the same
           //}
@@ -61,7 +59,6 @@ class App extends Component {
       };
 
     render() { 
-        console.log('App-Render');
         return ( 
             <React.Fragment>
             <NavBar totalCounters={this.state.counters.filter(c => c.value > 0).length}/>
