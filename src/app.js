@@ -13,12 +13,37 @@ class App extends Component {
           { id: 4, value: 0 },
         ],
       };
+
+      constructor(props){
+          super(props);
+          console.log('App-Constructor');
+          this.sate = this.props.something;
+      }
+
+      componentDidMount(prevProps, prevState){
+          console.log('App-Mounted');
+          //if (prevProps.counters.value !== this.props.counters.value){
+              // Alax call to will not happem if things are the same
+          //}
+      }
+
+      componentWillUnmount(){
+
+      }
     
       handleIncrement = (counter) => {
         const counters = [...this.state.counters];
         const index = counters.indexOf(counter);
         counters[index] = { ...counter };
         counters[index].value++;
+        this.setState({ counters });
+      };
+
+      handleDecrement = (counter) => {
+        const counters = [...this.state.counters];
+        const index = counters.indexOf(counter);
+        counters[index] = { ...counter };
+        counters[index].value--;
         this.setState({ counters });
       };
     
@@ -36,6 +61,7 @@ class App extends Component {
       };
 
     render() { 
+        console.log('App-Render');
         return ( 
             <React.Fragment>
             <NavBar totalCounters={this.state.counters.filter(c => c.value > 0).length}/>
@@ -44,6 +70,7 @@ class App extends Component {
                 counters={this.state.counters}
                 onReset={this.handleReset}
                 onIncrement={this.handleIncrement}
+                onDecrement={this.handleDecrement}
                 onDelete={this.handleDelete}
                 />
                 <Movies/>
