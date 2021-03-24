@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import Pagination from "./common/pagination";
 import { getMovies } from "../services/fakeMovieService";
 import Like from "./common/like";
 
 class Movies extends Component {
-  state = { movies: getMovies() };
+  state = { movies: getMovies(), pageSize: 4, currentPage: 1 };
 
   handleDelete = (movie) => {
     const movies = this.state.movies.filter((m) => m._id !== movie._id);
@@ -11,6 +12,8 @@ class Movies extends Component {
   };
 
   handleLike = (movie) => {
+    // This is where a call to the database would be done to
+    // check if the change was made on the backend
     const movies = [...this.state.movies];
     const index = movies.indexOf(movie);
     movies[index] = { ...movies[index] };
@@ -18,8 +21,13 @@ class Movies extends Component {
     this.setState({ movies });
   };
 
+  handlePageChange = (page) => {
+    this.setState({ currentPage: page });
+  };
+
   render() {
     const { length: count } = this.state.movies;
+    const { pageSize, currentPage } = this.state;
 
     if (count === 0) return <h4>There are no moies in your database.</h4>;
 
@@ -62,6 +70,12 @@ class Movies extends Component {
             ))}
           </tbody>
         </table>
+        <Pagination
+          itemsCount={count}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          onPageChange={this.handlePageChange}
+        />
       </React.Fragment>
     );
   }
